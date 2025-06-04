@@ -23,7 +23,15 @@
     .job button{padding:0.4rem 1rem;border:none;border-radius:0.3rem;background:#0077ff;color:#fff;cursor:pointer;transition:background .2s;}
     .job button:hover{background:#005ce0;}
     footer{padding:0.5rem 1rem;text-align:center;font-size:0.85rem;background:rgba(255,255,255,.6);backdrop-filter:blur(6px);}
-    #visitorCounter {
+
+                .VisitCount {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 9999;
+                }
+
+    /* #visitorCounter {
       position: fixed;
       bottom: 10px;
       right: 10px;
@@ -33,7 +41,7 @@
       padding: 0.3rem 0.6rem;
       font-size: 0.85rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+    } */
     @media (max-width: 600px) {
       nav{flex-direction:column;align-items:stretch;}
       nav .nav-links{justify-content:center;}
@@ -207,13 +215,16 @@
     </div>
   </main>
 
+    <div class="VisitCount"><a href='https://www.free-counters.org/'>https://www.free-counters.org</a><script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=eef94672f96131084e41a40be14687e5014885c7'></script>
+<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/1348097/t/1"></script>
+</div>
   <!-- Footer -->
   <footer>
     © 2025 The Dead Engineer.
   </footer>
 
   <!-- Visitor Counter -->
-  <div id="visitorCounter">Visitors: <span id="visitorCount">0</span></div>
+  <!-- <div id="visitorCounter">Visitors: <span id="visitorCount">0</span></div> -->
 
   <!-- Script Section -->
   <script>
@@ -228,12 +239,12 @@
     }
 
     // Visitor Counter Script
-    const countKey = 'visitorCount';
-    let count = localStorage.getItem(countKey);
-    if (!count) count = 0;
-    count++;
-    localStorage.setItem(countKey, count);
-    document.getElementById('visitorCount').innerText = count;
+    // const countKey = 'visitorCount';
+    // let count = localStorage.getItem(countKey);
+    // if (!count) count = 0;
+    // count++;
+    // localStorage.setItem(countKey, count);
+    // document.getElementById('visitorCount').innerText = count;
   </script>
 </body>
 </html>
