@@ -3,57 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MyBrand | Jobs</title>
+  <title>The Dead Engineer</title>
   <style>
-    /* --- Basic reset & typographic foundation --- */
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;font-family:system-ui, sans-serif;}
-
-    body{display:flex;flex-direction:column;min-height:100vh;background:#f5f7fa;color:#333;}
-
-    /* --- Thin / translucent navigation bar --- */
-    nav{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:0.5rem 1rem;background:rgba(255,255,255,.6);backdrop-filter:blur(6px);}
-    nav a{margin-left:1.5rem;text-decoration:none;color:#333;font-weight:500;transition:opacity .2s;}
+    body{display:flex;flex-direction:column;min-height:100vh;background:#6c96d4;color:#000000;position:relative;}
+    nav{position:sticky;top:0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:0.5rem 1rem;background:rgba(255,255,255,.6);backdrop-filter:blur(6px);gap:1rem;}
+    nav .brand{font-weight:700;font-size:1.1rem;}
+    nav .nav-links{display:flex;gap:1rem;flex-wrap:wrap;}
+    nav a{text-decoration:none;color:#000000;font-weight:500;transition:opacity .2s;}
     nav a:hover{opacity:0.7;}
-    .brand{font-weight:700;font-size:1.1rem;}
-
-    /* --- Main content area --- */
+    nav .search-bar{flex:1;text-align:center;}
+    nav .search-bar input{padding:0.3rem 0.6rem;border:1px solid #b7dcff;border-radius:0.3rem;width:100%;max-width:250px;}
     main{flex:1;padding:2rem 1rem;display:flex;flex-direction:column;gap:1rem;}
+    .heading{text-align:center;font-size:1.5rem;font-weight:600;margin-bottom:1rem;}
     .jobs{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;}
-
-    /* --- Job box --- */
-    .job{display:flex;justify-content:space-between;align-items:center;flex:1 1 300px;padding:1rem;border:1px solid #ddd;border-radius:0.5rem;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.05);}
+    .job{display:flex;flex-direction:row;justify-content:space-between;align-items:center;flex:1 1 300px;padding:1rem;border:1px solid #ddd;border-radius:0.5rem;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.05);}
     .job .left{display:flex;flex-direction:column;gap:0.25rem;}
     .job .right{display:flex;flex-direction:column;align-items:flex-end;gap:0.5rem;}
     .job button{padding:0.4rem 1rem;border:none;border-radius:0.3rem;background:#0077ff;color:#fff;cursor:pointer;transition:background .2s;}
     .job button:hover{background:#005ce0;}
-
-    /* --- Footer --- */
-    footer{padding:0.5rem 1rem;text-align:center;font-size:0.85rem;background:#fafafa;border-top:1px solid #eee;}
+    footer{padding:0.5rem 1rem;text-align:center;font-size:0.85rem;background:rgba(255,255,255,.6);backdrop-filter:blur(6px);}
+    #visitorCounter {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.85rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    @media (max-width: 600px) {
+      nav{flex-direction:column;align-items:stretch;}
+      nav .nav-links{justify-content:center;}
+      .job{flex-direction:column;align-items:flex-start;gap:0.5rem;}
+      .job .right{align-items:flex-start;}
+    }
   </style>
 </head>
 <body>
   <!-- Navigation -->
   <nav>
-    <div class="brand">MyBrand</div>
-    <div>
-      <a href="#">Home</a>
-      <a href="#">Jobs</a>
+    <div class="brand">The Dead Engineer</div>
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search jobs..." onkeyup="filterJobs()">
+    </div>
+    <div class="nav-links">
+      <a href="https://www.thedeadengineer.com">Home</a>
+      <a href="#">Donate</a>
       <a href="#">Contact</a>
     </div>
   </nav>
 
   <!-- Main content -->
   <main>
-    <div class="jobs">
+    <div class="heading">Vacancies</div>
+    <div class="jobs" id="jobsContainer">
       <!-- Example job card 1 -->
       <div class="job">
         <div class="left">
           <strong>Google</strong>
           <span>Software Engineer</span>
-          <small>Apply by: 30 Jun 2025</small>
+          <small>Apply by: 30 Jun 2025</small>
         </div>
         <div class="right">
-          <span>₹30 LPA</span>
+          <span>₹30 LPA</span>
           <button>Apply</button>
         </div>
       </div>
@@ -62,10 +77,10 @@
         <div class="left">
           <strong>Amazon</strong>
           <span>Data Analyst</span>
-          <small>Apply by: 15 Jul 2025</small>
+          <small>Apply by: 15 Jul 2025</small>
         </div>
         <div class="right">
-          <span>₹18 LPA</span>
+          <span>₹18 LPA</span>
           <button>Apply</button>
         </div>
       </div>
@@ -74,10 +89,118 @@
         <div class="left">
           <strong>Infosys</strong>
           <span>System Engineer</span>
-          <small>Apply by: 08 Jul 2025</small>
+          <small>Apply by: 08 Jul 2025</small>
         </div>
         <div class="right">
-          <span>₹6 LPA</span>
+          <span>₹6 LPA</span>
+          <button>Apply</button>
+        </div>
+      </div>
+            <!-- Example job card 1 -->
+      <div class="job">
+        <div class="left">
+          <strong>Google</strong>
+          <span>Software Engineer</span>
+          <small>Apply by: 30 Jun 2025</small>
+        </div>
+        <div class="right">
+          <span>₹30 LPA</span>
+          <button>Apply</button>
+        </div>
+      </div>
+      <!-- Example job card 2 -->
+      <div class="job">
+        <div class="left">
+          <strong>Amazon</strong>
+          <span>Data Analyst</span>
+          <small>Apply by: 15 Jul 2025</small>
+        </div>
+        <div class="right">
+          <span>₹18 LPA</span>
+          <button>Apply</button>
+        </div>
+      </div>
+      <!-- Example job card 3 -->
+      <div class="job">
+        <div class="left">
+          <strong>Infosys</strong>
+          <span>System Engineer</span>
+          <small>Apply by: 08 Jul 2025</small>
+        </div>
+        <div class="right">
+          <span>₹6 LPA</span>
+          <button>Apply</button>
+        </div>
+      </div>
+            <!-- Example job card 1 -->
+      <div class="job">
+        <div class="left">
+          <strong>Google</strong>
+          <span>Software Engineer</span>
+          <small>Apply by: 30 Jun 2025</small>
+        </div>
+        <div class="right">
+          <span>₹30 LPA</span>
+          <button>Apply</button>
+        </div>
+      </div>
+      <!-- Example job card 2 -->
+      <div class="job">
+        <div class="left">
+          <strong>Amazon</strong>
+          <span>Data Analyst</span>
+          <small>Apply by: 15 Jul 2025</small>
+        </div>
+        <div class="right">
+          <span>₹18 LPA</span>
+          <button>Apply</button>
+        </div>
+      </div>
+      <!-- Example job card 3 -->
+      <div class="job">
+        <div class="left">
+          <strong>Infosys</strong>
+          <span>System Engineer</span>
+          <small>Apply by: 08 Jul 2025</small>
+        </div>
+        <div class="right">
+          <span>₹6 LPA</span>
+          <button>Apply</button>
+        </div>
+      </div>
+            <!-- Example job card 1 -->
+      <div class="job">
+        <div class="left">
+          <strong>Google</strong>
+          <span>Software Engineer</span>
+          <small>Apply by: 30 Jun 2025</small>
+        </div>
+        <div class="right">
+          <span>₹30 LPA</span>
+          <button>Apply</button>
+        </div>
+      </div>
+      <!-- Example job card 2 -->
+      <div class="job">
+        <div class="left">
+          <strong>Amazon</strong>
+          <span>Data Analyst</span>
+          <small>Apply by: 15 Jul 2025</small>
+        </div>
+        <div class="right">
+          <span>₹18 LPA</span>
+          <button>Apply</button>
+        </div>
+      </div>
+      <!-- Example job card 3 -->
+      <div class="job">
+        <div class="left">
+          <strong>Infosys</strong>
+          <span>System Engineer</span>
+          <small>Apply by: 08 Jul 2025</small>
+        </div>
+        <div class="right">
+          <span>₹6 LPA</span>
           <button>Apply</button>
         </div>
       </div>
@@ -86,7 +209,31 @@
 
   <!-- Footer -->
   <footer>
-    © 2025 MyBrand. All rights reserved.
+    © 2025 The Dead Engineer.
   </footer>
+
+  <!-- Visitor Counter -->
+  <div id="visitorCounter">Visitors: <span id="visitorCount">0</span></div>
+
+  <!-- Script Section -->
+  <script>
+    function filterJobs() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const jobs = document.querySelectorAll('.job');
+
+      jobs.forEach(job => {
+        const text = job.innerText.toLowerCase();
+        job.style.display = text.includes(input) ? 'flex' : 'none';
+      });
+    }
+
+    // Visitor Counter Script
+    const countKey = 'visitorCount';
+    let count = localStorage.getItem(countKey);
+    if (!count) count = 0;
+    count++;
+    localStorage.setItem(countKey, count);
+    document.getElementById('visitorCount').innerText = count;
+  </script>
 </body>
 </html>
