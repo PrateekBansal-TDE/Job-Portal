@@ -536,6 +536,8 @@ h6 {
 .footer .footer-about .logo {
   line-height: 1;
   margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer .footer-about .logo img {
